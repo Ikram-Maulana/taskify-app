@@ -1,8 +1,10 @@
 import React, { ChangeEvent, FC, useState } from "react";
 import InputFields from "./components/InputFields";
+import { Todo } from "./model";
 
 const App: FC = () => {
   const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Array<Todo>>([]);
   const [charLimit] = useState<number>(18);
   const [charRemaining, setCharRemaining] = useState<number>(18);
 
