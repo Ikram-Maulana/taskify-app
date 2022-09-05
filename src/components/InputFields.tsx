@@ -1,15 +1,21 @@
-import React, { ChangeEvent, FC } from "react";
+import React, { ChangeEvent, FC, FormEvent } from "react";
 
 interface Props {
   todo: string;
   charRemaining: number;
   onTaskChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  taskAdd: (e: FormEvent) => void;
 }
 
-const InputFields: FC<Props> = ({ todo, charRemaining, onTaskChange }) => {
+const InputFields: FC<Props> = ({
+  todo,
+  charRemaining,
+  onTaskChange,
+  taskAdd,
+}) => {
   return (
     <div className="form-input w-[300px] mx-auto mb-4 md:mb-6 md:w-[500px]">
-      <form className="flex flex-col gap-2">
+      <form className="flex flex-col gap-2" onSubmit={taskAdd}>
         <p className="flex flex-row justify-end font-black px-1 text-[#2B2A35]">
           Sisa Karakter: {charRemaining}
         </p>

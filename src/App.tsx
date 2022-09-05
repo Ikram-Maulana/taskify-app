@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from "react";
+import React, { ChangeEvent, FC, FormEvent, useState } from "react";
 import InputFields from "./components/InputFields";
 import { Todo } from "./model";
 
@@ -26,6 +26,10 @@ const App: FC = () => {
     setCharRemaining(remaining);
   };
 
+  const taskAddHandler = (e: FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="App container mx-auto min-h-screen flex flex-col items-center">
       <h1 className="font-black my-8 md:my-12 text-center text-2xl md:text-3xl lg:text-4xl">
@@ -36,6 +40,7 @@ const App: FC = () => {
         todo={todo}
         charRemaining={charRemaining}
         onTaskChange={onTaskChangeHandler}
+        taskAdd={taskAddHandler}
       />
     </div>
   );
