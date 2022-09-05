@@ -1,9 +1,18 @@
-import React from "react";
+import React, { ChangeEvent, FC } from "react";
 
-const InputFields = () => {
+interface Props {
+  todo: string;
+  charRemaining: number;
+  onTaskChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+const InputFields: FC<Props> = ({ todo, charRemaining, onTaskChange }) => {
   return (
-    <div className="form-input w-full px-4 md:px-16 lg:px-40">
-      <form>
+    <div className="form-input w-[300px] mx-auto mb-4 md:mb-6 md:w-[500px]">
+      <form className="flex flex-col gap-2">
+        <p className="flex flex-row justify-end font-black px-1 text-[#2B2A35]">
+          Sisa Karakter: {charRemaining}
+        </p>
         <label
           htmlFor="add-task"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
@@ -15,7 +24,9 @@ const InputFields = () => {
             type="text"
             id="input-task"
             className="block p-4 pl-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-violet-500 focus:border-violet-500 focus:drop-shadow-lg"
-            placeholder="Enter A Task"
+            placeholder="Enter A Task..."
+            value={todo}
+            onChange={(e) => onTaskChange(e)}
           />
           <button
             type="submit"
