@@ -1,12 +1,16 @@
 import React, { ChangeEvent, FC, FormEvent, useState } from "react";
 import InputFields from "./components/InputFields";
 import { Todo } from "./model";
+import { ToastContainer, toast } from "react-toastify";
+
+// Styles
+import "react-toastify/dist/ReactToastify.css";
 
 const App: FC = () => {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Array<Todo>>([]);
-  const [charLimit] = useState<number>(18);
-  const [charRemaining, setCharRemaining] = useState<number>(18);
+  const [charLimit] = useState<number>(20);
+  const [charRemaining, setCharRemaining] = useState<number>(20);
 
   const charLimiter = (value: string, max: number) => {
     if (value.length > max) {
@@ -28,6 +32,34 @@ const App: FC = () => {
 
   const taskAddHandler = (e: FormEvent) => {
     e.preventDefault();
+
+    if (todo) {
+      setTodos([
+        ...todos,
+        {
+          id: Date.now(),
+          todo,
+          isDone: false,
+        },
+      ]);
+      setTodo("");
+      setCharRemaining(charLimit);
+      return true;
+    }
+
+    return notify();
+  };
+
+  const notify = () => {
+    toast.warn("Please enter a task!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+    });
   };
 
   return (
@@ -41,6 +73,18 @@ const App: FC = () => {
         charRemaining={charRemaining}
         onTaskChange={onTaskChangeHandler}
         taskAdd={taskAddHandler}
+      />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover={false}
       />
     </div>
   );
