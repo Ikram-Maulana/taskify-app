@@ -1,11 +1,11 @@
 import { ChangeEvent, FC, FormEvent, useState } from "react";
-import { ToastContainer } from "react-toastify";
 import InputFields from "./components/InputFields";
+import { notifyWarn } from "./components/Notify";
+import TodoList from "./components/TodoList";
 import { Todo } from "./model";
 
 // Styles
 import "react-toastify/dist/ReactToastify.css";
-import { notifyWarn } from "./components/Notify";
 
 const App: FC = () => {
   const [todo, setTodo] = useState<string>("");
@@ -64,17 +64,7 @@ const App: FC = () => {
         taskAdd={taskAddHandler}
       />
 
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable={false}
-        pauseOnHover={false}
-      />
+      <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
 };
