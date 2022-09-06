@@ -17,3 +17,11 @@ h5,
 h6 {
   @apply font-serif;
 }
+
+.react-confirm-alert-body {
+  @apply w-64 md:w-[400px] flex flex-col items-center;
+}
+
+.react-confirm-alert-body > h1 {
+  @apply font-bold;
+}
