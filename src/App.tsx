@@ -43,8 +43,6 @@ const App: FC = () => {
     return notifyWarn("Please enter a task!");
   };
 
-  
-
   return (
     <div className="App container mx-auto min-h-screen flex flex-col items-center">
       <h1 className="font-black my-8 md:my-12 text-center text-2xl md:text-3xl lg:text-4xl">

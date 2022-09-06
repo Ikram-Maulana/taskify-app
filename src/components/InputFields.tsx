@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react";
+import { FC, FormEvent, useEffect, useRef, useState } from "react";
 
 interface Props {
   todo: string;
@@ -16,6 +16,11 @@ const InputFields: FC<Props> = ({
   disabled,
 }) => {
   const [task] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   return (
     <div className="form-input w-[300px] mx-auto mb-4 md:mb-6 md:w-[500px]">
@@ -39,6 +44,7 @@ const InputFields: FC<Props> = ({
             placeholder="Enter A Task..."
             value={todo}
             onChange={(e) => onTaskChange(disabled ? task : e.target.value)}
+            ref={inputRef}
             {...(disabled && { disabled: true, readOnly: true })}
           />
           <button
