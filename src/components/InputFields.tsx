@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, FormEvent } from "react";
+import { ChangeEvent, FC, FormEvent } from "react";
 
 interface Props {
   todo: string;

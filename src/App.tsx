@@ -1,10 +1,11 @@
-import React, { ChangeEvent, FC, FormEvent, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
+import { ToastContainer } from "react-toastify";
 import InputFields from "./components/InputFields";
 import { Todo } from "./model";
-import { ToastContainer, toast } from "react-toastify";
 
 // Styles
 import "react-toastify/dist/ReactToastify.css";
+import { notifyWarn } from "./components/Notify";
 
 const App: FC = () => {
   const [todo, setTodo] = useState<string>("");
@@ -47,19 +48,7 @@ const App: FC = () => {
       return true;
     }
 
-    return notify();
-  };
-
-  const notify = () => {
-    toast.warn("Please enter a task!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-    });
+    return notifyWarn("Please enter a task!");
   };
 
   return (
