@@ -30,24 +30,52 @@ const TodoList: FC<Props> = ({
   setDisabled,
 }) => {
   return (
-    <div className="todos container mx-auto flex justify-evenly flex-wrap px-3 md:px-6 lg:px-12 gap-2">
-      {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          setTodo={setTodo}
-          todos={todos}
-          setTodos={setTodos}
-          charLimit={charLimit}
-          setCharRemaining={setCharRemaining}
-          edit={edit}
-          setEdit={setEdit}
-          editTodo={editTodo}
-          setEditTodo={setEditTodo}
-          disabled={disabled}
-          setDisabled={setDisabled}
-        />
-      ))}
+    <div className="container flex flex-col md:flex-row justify-between items-start mx-auto px-3 md:px-6 lg:px-12 gap-x-2">
+      <div className="todos flex flex-col w-full md:w-1/2 mb-2 md:mb-0 p-4 rounded-lg bg-gradient-to-tl from-[#8C49F7] to-[#6B52FE]">
+        <h2 className="font-black text-lg text-white md:text-xl mb-2 md:mb-4">
+          Active Task
+        </h2>
+        {todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            setTodo={setTodo}
+            todos={todos}
+            setTodos={setTodos}
+            charLimit={charLimit}
+            setCharRemaining={setCharRemaining}
+            edit={edit}
+            setEdit={setEdit}
+            editTodo={editTodo}
+            setEditTodo={setEditTodo}
+            disabled={disabled}
+            setDisabled={setDisabled}
+          />
+        ))}
+      </div>
+
+      <div className="todos flex flex-col w-full md:w-1/2 mb-2 md:mb-0 p-4 rounded-lg bg-gradient-to-tl from-[#5653FF] to-[#2420FF]">
+        <h2 className="font-black text-lg text-white md:text-xl mb-2 md:mb-4">
+          Completed Task
+        </h2>
+        {todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            setTodo={setTodo}
+            todos={todos}
+            setTodos={setTodos}
+            charLimit={charLimit}
+            setCharRemaining={setCharRemaining}
+            edit={edit}
+            setEdit={setEdit}
+            editTodo={editTodo}
+            setEditTodo={setEditTodo}
+            disabled={disabled}
+            setDisabled={setDisabled}
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -11,6 +11,7 @@ import { FaCheck, FaEdit, FaTrash, FaWindowClose } from "react-icons/fa";
 import { Todo } from "../model";
 import charLimiter from "../utils/CharLimiter";
 import { notifySuccess, notifyWarn } from "../utils/Notify";
+import Tooltip from "../utils/Tooltip";
 
 // Styles
 import "react-confirm-alert/src/react-confirm-alert.css";
@@ -100,7 +101,7 @@ const TodoItem: FC<Props> = ({
 
   return (
     <form
-      className="flex w-full md:w-[46%] lg:w-[31%] rounded-md p-5 mb-2 md:mb-4 border border-gray-200 bg-white hover:shadow-md hover:transition-all"
+      className="flex w-full rounded-md p-5 mb-2 md:mb-4 border border-gray-200 bg-white hover:scale-105  lg:hover:scale-[1.02]  hover:drop-shadow-lg transition-all"
       onSubmit={(e) =>
         edit
           ? notifyWarn("Can't edit other tasks, when you're in editing mode!")
@@ -150,9 +151,7 @@ const TodoItem: FC<Props> = ({
               }
             }}
           >
-            <span className="tooltip rounded shadow-lg text-base py-1 px-4 bg-[#6d6d6d] text-white -mt-10 text-center">
-              Edit
-            </span>
+            <Tooltip>Edit</Tooltip>
             <FaEdit />
           </span>
         ) : (
@@ -169,9 +168,7 @@ const TodoItem: FC<Props> = ({
               }
             }}
           >
-            <span className="tooltip rounded shadow-lg text-base py-1 px-4 bg-[#6d6d6d] text-white -mt-8 text-center">
-              Cancel
-            </span>
+            <Tooltip>Cancel</Tooltip>
             <FaWindowClose />
           </span>
         )}
@@ -179,9 +176,7 @@ const TodoItem: FC<Props> = ({
           className="cursor-pointer has-tooltip"
           onClick={() => onDeleteHandler(todo.id)}
         >
-          <span className="tooltip rounded shadow-lg text-base py-1 px-4 bg-[#6d6d6d] text-white -mt-8 text-center">
-            Delete
-          </span>
+          <Tooltip>Delete</Tooltip>
           <FaTrash />
         </span>
         <span
@@ -196,9 +191,7 @@ const TodoItem: FC<Props> = ({
               : onDoneHandler(todo.id)
           }
         >
-          <span className="tooltip rounded shadow-lg text-base py-1 px-4 bg-[#6d6d6d] text-white -mt-8 text-center">
-            Mark as Done
-          </span>
+          <Tooltip>Done</Tooltip>
           <FaCheck />
         </span>
       </div>
