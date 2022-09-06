@@ -10,7 +10,7 @@ import { confirmAlert } from "react-confirm-alert";
 import { FaCheck, FaEdit, FaTrash, FaWindowClose } from "react-icons/fa";
 import { Todo } from "../model";
 import charLimiter from "../utils/CharLimiter";
-import { notifySuccess } from "./Notify";
+import { notifySuccess, notifyWarn } from "../utils/Notify";
 
 // Styles
 import "react-confirm-alert/src/react-confirm-alert.css";
@@ -41,7 +41,6 @@ const TodoItem: FC<Props> = ({
   setEdit,
   editTodo,
   setEditTodo,
-  disabled,
   setDisabled,
 }) => {
   const onDoneHandler = (id: number) => {
@@ -88,6 +87,7 @@ const TodoItem: FC<Props> = ({
       todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
     );
     setEdit(false);
+    todos.map((todo) => (todo.id === id ? (todo.isEdit = false) : todo));
     setEditTodo("");
     setCharRemaining(charLimit);
   };
@@ -101,10 +101,14 @@ const TodoItem: FC<Props> = ({
   return (
     <form
       className="flex w-full md:w-[46%] lg:w-[31%] rounded-md p-5 mb-2 md:mb-4 border border-gray-200 bg-white hover:shadow-md hover:transition-all"
-      onSubmit={(e) => onTaskEditSubmitHandler(e, todo.id)}
+      onSubmit={(e) =>
+        edit
+          ? notifyWarn("Can't edit other tasks, when you're in editing mode!")
+          : onTaskEditSubmitHandler(e, todo.id)
+      }
     >
       <div className="w-full">
-        {edit ? (
+        {todo.isEdit ? (
           <input
             type="text"
             id="visitors"
@@ -125,45 +129,76 @@ const TodoItem: FC<Props> = ({
       </div>
 
       <div className="flex gap-3 place-items-center text-lg">
-        {!edit ? (
+        {!todo.isEdit ? (
           <span
-            className="cursor-pointer"
+            className={`${
+              edit ? "cursor-not-allowed" : "cursor-pointer"
+            } has-tooltip`}
             onClick={(e) => {
               e.preventDefault();
-              if (!todo.isDone) {
+              if (!todo.isDone && !edit) {
                 setEditTodo(todo.todo);
                 setEdit(true);
-                setCharRemaining(todo.todo.length);
+                todo.isEdit = true;
+                setCharRemaining(charLimit - todo.todo.length);
                 setDisabled(true);
                 setTodo("");
+              } else {
+                notifyWarn(
+                  "Can't edit other tasks, when you're in editing mode!"
+                );
               }
             }}
           >
+            <span className="tooltip rounded shadow-lg text-base py-1 px-4 bg-[#6d6d6d] text-white -mt-10 text-center">
+              Edit
+            </span>
             <FaEdit />
           </span>
         ) : (
           <span
-            className="cursor-pointer"
+            className={`cursor-pointer has-tooltip ${edit && "text-red-700"}`}
             onClick={(e) => {
               e.preventDefault();
               if (!todo.isDone) {
                 setEditTodo("");
                 setEdit(false);
+                todo.isEdit = false;
                 setCharRemaining(charLimit);
                 setDisabled(false);
               }
             }}
           >
+            <span className="tooltip rounded shadow-lg text-base py-1 px-4 bg-[#6d6d6d] text-white -mt-8 text-center">
+              Cancel
+            </span>
             <FaWindowClose />
           </span>
         )}
         <span
-          className="cursor-pointer"
+          className="cursor-pointer has-tooltip"
           onClick={() => onDeleteHandler(todo.id)}
         >
+          <span className="tooltip rounded shadow-lg text-base py-1 px-4 bg-[#6d6d6d] text-white -mt-8 text-center">
+            Delete
+          </span>
           <FaTrash />
         </span>
-        <span className="cursor-pointer" onClick={() => onDoneHandler(todo.id)}>
+        <span
+          className={`${
+            edit ? "cursor-not-allowed" : "cursor-pointer"
+          } has-tooltip`}
+          onClick={() =>
+            edit
+              ? notifyWarn(
+                  "Can't mark as done tasks, when you're in editing mode!"
+                )
+              : onDoneHandler(todo.id)
+          }
+        >
+          <span className="tooltip rounded shadow-lg text-base py-1 px-4 bg-[#6d6d6d] text-white -mt-8 text-center">
+            Mark as Done
+          </span>
           <FaCheck />
         </span>
       </div>

@@ -1,6 +1,6 @@
 import { FC, FormEvent, useState } from "react";
 import InputFields from "./components/InputFields";
-import { notifyWarn } from "./components/Notify";
+import { notifyWarn } from "./utils/Notify";
 import TodoList from "./components/TodoList";
 import { Todo } from "./model";
 import charLimiter from "./utils/CharLimiter";
@@ -33,6 +33,7 @@ const App: FC = () => {
           id: Date.now(),
           todo,
           isDone: false,
+          isEdit: false,
         },
       ]);
       setTodo("");

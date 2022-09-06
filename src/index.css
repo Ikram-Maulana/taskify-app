@@ -25,3 +25,11 @@ h6 {
 .react-confirm-alert-body > h1 {
   @apply font-bold;
 }
+
+.tooltip {
+  @apply invisible absolute;
+}
+
+.has-tooltip:hover .tooltip {
+  @apply visible z-50 mt-5 px-2;
+}
