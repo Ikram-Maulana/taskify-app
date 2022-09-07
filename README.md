@@ -1,4 +1,4 @@
-<img src="./Mockup-Tasktify.png" style="display:flex;width:400px;margin:auto;margin-bottom:1rem" alt="Ikram-Tasktify" />
+![Ikram-Tasktify](Mockup-Tasktify.png)
 
 ![html](https://img.shields.io/static/v1?message=HTML&logo=html5&labelColor=5c5c5c&color=1182c3&label=%20)
 ![typescript](https://img.shields.io/static/v1?message=TypeScript&logo=typescript&labelColor=5c5c5c&color=1182c3&label=%20)
