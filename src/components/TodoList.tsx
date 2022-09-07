@@ -64,6 +64,7 @@ const TodoList: FC<Props> = ({
                 setDisabled={setDisabled}
               />
             ))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>
@@ -96,6 +97,7 @@ const TodoList: FC<Props> = ({
                 setDisabled={setDisabled}
               />
             ))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>
