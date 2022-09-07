@@ -1,46 +1,35 @@
-# Getting Started with Create React App
+<img src="./Mockup-Tasktify.png" style="width:400px;margin-left:3rem;margin-bottom:1rem" alt="Ikram-Tasktify" />
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![html](https://img.shields.io/static/v1?message=HTML&logo=html5&labelColor=5c5c5c&color=1182c3&label=%20)
+![typescript](https://img.shields.io/static/v1?message=TypeScript&logo=typescript&labelColor=5c5c5c&color=1182c3&label=%20)
+![reactjs](https://img.shields.io/static/v1?message=React%20JS&logo=react&labelColor=5c5c5c&color=1182c3&label=%20)
+![yarn](https://img.shields.io/static/v1?message=yarn&logo=yarn&labelColor=5c5c5c&color=1182c3&label=%20)
+![nodejs](https://img.shields.io/static/v1?message=Node%20Js&logo=node.js&labelColor=5c5c5c&color=1182c3&label=%20)
+![tailwind](https://img.shields.io/static/v1?message=Tailwind%20CSS&logo=tailwindcss&labelColor=5c5c5c&color=1182c3&label=%20)
 
-## Available Scripts
+## About Applications
 
-In the project directory, you can run:
+Ikram Tasktify Merupakan Sebuah Aplikasi Task List Berbasis Website Menggunakan ReactJS, TailwindCSS dan React Beautiful DnD.
 
-### `yarn start`
+## Steps to Install and Run Applications on Local Computers
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1.  Install [Node.Js](https://nodejs.org/en/download/) and [Git](https://git-scm.com/).
+2.  Clone this repository
+    `git clone https://github.com/Ikram-Maulana/taskify-app.git`
+3.  Open the project folder, then open CMD
+4.  To download all the required packages, type the command
+    `yarn install`
+5.  To run the application in development environment mode type the command
+    `yarn start`
+6.  To run the application in production environment mode type the command
+    `yarn build`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## In-App Features
 
-### `yarn test`
+- [x] Create Task List
+- [x] Drag and Drop Task List
+- [x] Responsive Design
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Licence
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This application is under license [MIT license](https://github.com/Ikram-Maulana/taskify-app/blob/master/LICENSE.md).
