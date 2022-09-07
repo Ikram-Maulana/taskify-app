@@ -17,6 +17,7 @@ import Tooltip from "../utils/Tooltip";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 interface Props {
+  index: number;
   todo: Todo;
   setTodo: Dispatch<SetStateAction<string>>;
   todos: Array<Todo>;
@@ -32,6 +33,7 @@ interface Props {
 }
 
 const TodoItem: FC<Props> = ({
+  index,
   todo,
   setTodo,
   todos,

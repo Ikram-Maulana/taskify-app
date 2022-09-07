@@ -1,16 +1,18 @@
 import React from "react";
+import { DragDropContext } from "react-beautiful-dnd";
 import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import App from "./App";
+
+// Styles
 import "./index.css";
-import { DragDropContext } from "react-beautiful-dnd";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <DragDropContext>
+    <DragDropContext onDragEnd={() => {}}>
       <App />
       <ToastContainer
         position="top-right"
