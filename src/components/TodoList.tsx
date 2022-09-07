@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction } from "react";
-import { Todo } from "../model";
+import { Todo } from "../utils/model";
 import TodoItem from "./TodoItem";
 
 interface Props {

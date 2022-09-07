@@ -1,9 +1,9 @@
 import { FC, FormEvent, useState } from "react";
 import InputFields from "./components/InputFields";
-import { notifyWarn } from "./utils/Notify";
 import TodoList from "./components/TodoList";
-import { Todo } from "./model";
 import charLimiter from "./utils/CharLimiter";
+import { Todo } from "./utils/model";
+import { notifyWarn } from "./utils/Notify";
 
 // Styles
 import "react-toastify/dist/ReactToastify.css";

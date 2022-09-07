@@ -4,12 +4,12 @@ import {
   FormEvent,
   SetStateAction,
   useEffect,
-  useRef,
+  useRef
 } from "react";
 import { confirmAlert } from "react-confirm-alert";
 import { FaCheck, FaEdit, FaTrash, FaWindowClose } from "react-icons/fa";
-import { Todo } from "../model";
 import charLimiter from "../utils/CharLimiter";
+import { Todo } from "../utils/model";
 import { notifySuccess, notifyWarn } from "../utils/Notify";
 import Tooltip from "../utils/Tooltip";
 
