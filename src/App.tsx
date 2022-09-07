@@ -16,6 +16,7 @@ const App: FC = () => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>("");
   const [disabled, setDisabled] = useState<boolean>(false);
+  const [completedTodos, setCompletedTodos] = useState<Todo[]>([]);
 
   const onTaskChangeHandler = (todoValue: string) => {
     const { value, remaining } = charLimiter(todoValue, charLimit);
@@ -70,6 +71,8 @@ const App: FC = () => {
         setEditTodo={setEditTodo}
         disabled={disabled}
         setDisabled={setDisabled}
+        completedTodos={completedTodos}
+        setCompletedTodos={setCompletedTodos}
       />
     </div>
   );

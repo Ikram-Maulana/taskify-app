@@ -14,6 +14,8 @@ interface Props {
   setEditTodo: Dispatch<SetStateAction<string>>;
   disabled: boolean;
   setDisabled: Dispatch<SetStateAction<boolean>>;
+  completedTodos: Todo[];
+  setCompletedTodos: Dispatch<SetStateAction<Todo[]>>;
 }
 
 const TodoList: FC<Props> = ({
@@ -28,6 +30,8 @@ const TodoList: FC<Props> = ({
   setEditTodo,
   disabled,
   setDisabled,
+  completedTodos,
+  setCompletedTodos,
 }) => {
   return (
     <div className="container flex flex-col md:flex-row justify-between items-start mx-auto px-3 md:px-6 lg:px-12 gap-x-2">
