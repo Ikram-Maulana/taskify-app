@@ -104,9 +104,11 @@ const TodoItem: FC<Props> = ({
 
   return (
     <Draggable draggableId={todo.id.toString()} index={index}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <form
-          className="flex w-full rounded-md p-5 mb-2 md:mb-4 border border-gray-200 bg-white hover:scale-105  lg:hover:scale-[1.02]  hover:drop-shadow-lg transition-all"
+          className={`flex w-full rounded-md p-5 mb-2 md:mb-4 border border-gray-200 bg-white hover:scale-105  lg:hover:scale-[1.02]  ${
+            snapshot.isDragging ? "drop-shadow-xl" : "hover:drop-shadow-lg"
+          } transition-all`}
           onSubmit={(e) =>
             edit
               ? notifyWarn(

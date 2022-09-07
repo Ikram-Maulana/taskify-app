@@ -1,5 +1,6 @@
 import { FC, FormEvent, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import Footer from "./components/Footer";
 import InputFields from "./components/InputFields";
 import TodoList from "./components/TodoList";
 import charLimiter from "./utils/CharLimiter";
@@ -84,34 +85,38 @@ const App: FC = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="App container mx-auto min-h-screen flex flex-col items-center">
-        <h1 className="font-black my-8 md:my-12 text-center text-2xl md:text-3xl lg:text-4xl">
-          Ikram Taskify.
-        </h1>
+      <div className="flex flex-col min-h-screen">
+        <div className="App container mx-auto flex flex-col items-center flex-1">
+          <h1 className="font-black my-8 md:my-12 text-center text-2xl md:text-3xl lg:text-4xl">
+            Ikram Taskify.
+          </h1>
 
-        <InputFields
-          todo={todo}
-          charRemaining={charRemaining}
-          onTaskChange={onTaskChangeHandler}
-          onTaskAdd={onTaskAddHandler}
-          disabled={disabled}
-        />
+          <InputFields
+            todo={todo}
+            charRemaining={charRemaining}
+            onTaskChange={onTaskChangeHandler}
+            onTaskAdd={onTaskAddHandler}
+            disabled={disabled}
+          />
 
-        <TodoList
-          setTodo={setTodo}
-          todos={todos}
-          setTodos={setTodos}
-          charLimit={charLimit}
-          setCharRemaining={setCharRemaining}
-          edit={edit}
-          setEdit={setEdit}
-          editTodo={editTodo}
-          setEditTodo={setEditTodo}
-          disabled={disabled}
-          setDisabled={setDisabled}
-          completedTodos={completedTodos}
-          setCompletedTodos={setCompletedTodos}
-        />
+          <TodoList
+            setTodo={setTodo}
+            todos={todos}
+            setTodos={setTodos}
+            charLimit={charLimit}
+            setCharRemaining={setCharRemaining}
+            edit={edit}
+            setEdit={setEdit}
+            editTodo={editTodo}
+            setEditTodo={setEditTodo}
+            disabled={disabled}
+            setDisabled={setDisabled}
+            completedTodos={completedTodos}
+            setCompletedTodos={setCompletedTodos}
+          />
+        </div>
+
+        <Footer />
       </div>
     </DragDropContext>
   );
