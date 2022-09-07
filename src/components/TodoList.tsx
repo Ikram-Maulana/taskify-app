@@ -46,7 +46,7 @@ const TodoList: FC<Props> = ({
             <h2 className="font-black text-lg text-white md:text-xl mb-2 md:mb-4">
               Active Task
             </h2>
-            {todos.map((todo, index) => (
+            {todos?.map((todo, index) => (
               <TodoItem
                 index={index}
                 key={todo.id}
@@ -79,7 +79,7 @@ const TodoList: FC<Props> = ({
             <h2 className="font-black text-lg text-white md:text-xl mb-2 md:mb-4">
               Completed Task
             </h2>
-            {completedTodos.map((todo, index) => (
+            {completedTodos?.map((todo, index) => (
               <TodoItem
                 index={index}
                 key={todo.id}
