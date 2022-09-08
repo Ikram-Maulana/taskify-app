@@ -4,7 +4,7 @@ import {
   FormEvent,
   SetStateAction,
   useEffect,
-  useRef
+  useRef,
 } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { confirmAlert } from "react-confirm-alert";
@@ -87,13 +87,13 @@ const TodoItem: FC<Props> = ({
   ) => {
     e.preventDefault();
 
+    setEdit(false);
+    setEditTodo("");
+    setCharRemaining(charLimit);
+    todos.map((todo) => (todo.id === id ? { ...todo, isEdit: false } : todo));
     setTodos(
       todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
     );
-    setEdit(false);
-    todos.map((todo) => (todo.id === id ? (todo.isEdit = false) : todo));
-    setEditTodo("");
-    setCharRemaining(charLimit);
   };
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -109,19 +109,13 @@ const TodoItem: FC<Props> = ({
           className={`flex w-full rounded-md p-5 mb-2 md:mb-4 border border-gray-200 bg-white hover:scale-105  lg:hover:scale-[1.02]  ${
             snapshot.isDragging ? "drop-shadow-xl" : "hover:drop-shadow-lg"
           } transition-all`}
-          onSubmit={(e) =>
-            edit
-              ? notifyWarn(
-                  "Can't edit other tasks, when you're in editing mode!"
-                )
-              : onTaskEditSubmitHandler(e, todo.id)
-          }
+          onSubmit={(e) => onTaskEditSubmitHandler(e, todo.id)}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
           <div className="w-full">
-            {todo.isEdit ? (
+            {todo.isEdit && edit ? (
               <input
                 type="text"
                 id="visitors"
@@ -142,7 +136,26 @@ const TodoItem: FC<Props> = ({
           </div>
 
           <div className="flex gap-3 place-items-center text-lg">
-            {!todo.isEdit ? (
+            {todo.isEdit && edit ? (
+              <span
+                className={`cursor-pointer has-tooltip ${
+                  edit && "text-red-700"
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (!todo.isDone) {
+                    setEditTodo("");
+                    setEdit(false);
+                    todo.isEdit = false;
+                    setCharRemaining(charLimit);
+                    setDisabled(false);
+                  }
+                }}
+              >
+                <Tooltip>Cancel</Tooltip>
+                <FaWindowClose />
+              </span>
+            ) : (
               <span
                 className={`${
                   edit ? "cursor-not-allowed" : "cursor-pointer"
@@ -165,25 +178,6 @@ const TodoItem: FC<Props> = ({
               >
                 <Tooltip>Edit</Tooltip>
                 <FaEdit />
-              </span>
-            ) : (
-              <span
-                className={`cursor-pointer has-tooltip ${
-                  edit && "text-red-700"
-                }`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (!todo.isDone) {
-                    setEditTodo("");
-                    setEdit(false);
-                    todo.isEdit = false;
-                    setCharRemaining(charLimit);
-                    setDisabled(false);
-                  }
-                }}
-              >
-                <Tooltip>Cancel</Tooltip>
-                <FaWindowClose />
               </span>
             )}
             <span
